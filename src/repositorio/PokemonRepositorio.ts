@@ -32,4 +32,17 @@ export default class PokemonRepositorio {
         return error;
       });
   };
+
+  static obterPokemon = async (termo: string, configuracao?: IConfiguracao) => {
+    const tempoEspera = configuracao?.tempoEspera ?? 100;
+    const probabilidadeErro = configuracao?.probabilidadeErro ?? 0;
+    return Api.getObterTodosPokemon(tempoEspera, probabilidadeErro)
+      .then((p) => p.filter(
+        (pkm) => pkm.nome.toLowerCase().indexOf(termo.toLowerCase()) !== -1
+      ))
+      .catch((error: Error) => {
+        console.log(error.message);
+        return error;
+      });
+  };
 }

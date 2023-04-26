@@ -7,4 +7,11 @@ export default class PokemonManager {
     });
     return resultado instanceof Error ? null : resultado;
   };
+
+  static obterPokemon = async (termo: string) => {
+    const resultado = await PokemonRepositorio.obterPokemon(termo, {
+      tempoEspera: 100,
+    });
+    return resultado instanceof Error ? null : resultado;
+  };
 }
