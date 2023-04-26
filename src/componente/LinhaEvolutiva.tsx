@@ -9,21 +9,17 @@ interface LinhaEvolutivaProps {
 }
 
 const LinhaEvolutiva: FC<LinhaEvolutivaProps> = ({ listaPokemon }) => {
-  const [idPokemonSelecionado, setIdPokemonSelecionado] =
-    useState<Nullable<number>>();
+  const [pokemonSelecionado, setPokemonSelecionado] =
+    useState<Nullable<Pokemon>>();
 
-  const pokemonSelecionado = listaPokemon.find(
-    (pkm) => pkm.nDex === idPokemonSelecionado
-  );
-
-  useEffect(() => {
-    const pkm = listaPokemon.find(
-      (pkm) => pkm.nDex === idPokemonSelecionado
-    );
-
-    if(!pkm) setIdPokemonSelecionado(null);
+    useEffect(() => {
+      if(!listaPokemon.find(pkm => pkm === pokemonSelecionado))
+      {
+        setPokemonSelecionado(null);
+      }
+    }, [listaPokemon, pokemonSelecionado]);
   
-  }, [listaPokemon, idPokemonSelecionado]);
+
 
   return (
     <div className="flex items-center gap-8">
@@ -34,8 +30,8 @@ const LinhaEvolutiva: FC<LinhaEvolutivaProps> = ({ listaPokemon }) => {
               <CardPequenoPokemon
                 key={pkm.nDex}
                 pokemon={pkm}
-                selecionado={pokemonSelecionado === pkm}
-                onClick={() => setIdPokemonSelecionado(pkm.nDex)}
+                selecionado={pkm === pokemonSelecionado}
+                onClick={() => setPokemonSelecionado(pkm)}
               />
               {index < lista.length - 1 && <h2 key={index}>→</h2>}
             </>
@@ -59,8 +55,8 @@ const LinhaEvolutiva: FC<LinhaEvolutivaProps> = ({ listaPokemon }) => {
           ))}
         </div>
       </div>
-      {idPokemonSelecionado && (
-        <img className="w-96" src={pokemonSelecionado?.imagem} />
+      {pokemonSelecionado && (
+        <img className="w-96" src={pokemonSelecionado.imagem} />
       )}
     </div>
   );

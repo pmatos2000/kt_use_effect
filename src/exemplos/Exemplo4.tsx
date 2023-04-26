@@ -61,7 +61,8 @@ const Exemplo4: FC = () => {
   };
 
   const linhaEvolutiva = obterListaPokemonEvolucao(pokemonSelecionado, listaPokemon).sort((a,b) => a.nDex - b.nDex);
-  console.log(linhaEvolutiva);
+  //console.log(linhaEvolutiva);
+
 
   useEffect(() => {
     buscarPokemons();
