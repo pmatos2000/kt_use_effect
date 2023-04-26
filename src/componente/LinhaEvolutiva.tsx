@@ -1,4 +1,4 @@
-import { FC, useState } from "react";
+import { FC, useEffect, useState } from "react";
 import { ImutavelArray } from "../tipos/ImutavelArray";
 import { Pokemon } from "../tipos/Pokemon";
 import CardPequenoPokemon from "./CardPequenoPokemon";
@@ -15,6 +15,15 @@ const LinhaEvolutiva: FC<LinhaEvolutivaProps> = ({ listaPokemon }) => {
   const pokemonSelecionado = listaPokemon.find(
     (pkm) => pkm.nDex === idPokemonSelecionado
   );
+
+  useEffect(() => {
+    const pkm = listaPokemon.find(
+      (pkm) => pkm.nDex === idPokemonSelecionado
+    );
+
+    if(!pkm) setIdPokemonSelecionado(null);
+  
+  }, [listaPokemon, idPokemonSelecionado]);
 
   return (
     <div className="flex items-center gap-8">
@@ -50,7 +59,9 @@ const LinhaEvolutiva: FC<LinhaEvolutivaProps> = ({ listaPokemon }) => {
           ))}
         </div>
       </div>
-      <img className="w-96" src={pokemonSelecionado?.imagem} />
+      {idPokemonSelecionado && (
+        <img className="w-96" src={pokemonSelecionado?.imagem} />
+      )}
     </div>
   );
 };
