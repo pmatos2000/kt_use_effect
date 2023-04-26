@@ -1,0 +1,1 @@
+export type Nullable<T> = Readonly<T> | null | undefined;
