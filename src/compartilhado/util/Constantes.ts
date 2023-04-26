@@ -48,7 +48,7 @@ export const listaPokemon: Array<Pokemon> = [
     nome: "Ivyssauro",
     tipoPrimario: TipoPokemon.PLANTA,
     tipoSecundario: TipoPokemon.VENENO,
-    evoluirPara: ["Venusaur"],
+    evoluirPara: ["Venussauro"],
     inicial: false,
     descricao:
       "Quando o bulbo nas costas cresce, parece perder a capacidade de ficar em pé nas patas traseiras.",
@@ -108,7 +108,7 @@ export const listaPokemon: Array<Pokemon> = [
     tipoPrimario: TipoPokemon.AGUA,
     inicial: false,
     descricao: "",
-    evoluirPara: ["Wartortle"],
+    evoluirPara: ["Blastoise"],
     imagem: Imagems.Wartortle,
   },
   {

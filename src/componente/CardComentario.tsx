@@ -3,6 +3,7 @@ import Card from "./Card";
 import { Pokemon } from "../tipos/Pokemon";
 import EntradaTexto from "./EntradaTexto";
 import { Nullable } from "../tipos/Nullable";
+import Botao from "./Botao";
 
 interface CardComentarioProps {
   pokemon?: Nullable<Pokemon>;
@@ -46,10 +47,13 @@ const CardComentario: FC<CardComentarioProps> = ({ pokemon }) => {
           resize-none"
           onChange={(e) => setComentario(e.target.value)}
           value={comentario}
-          rows={12}
+          rows={13}
           placeholder={ativo ? "Comentário..." : ""}
           disabled={!ativo}
         />
+      </div>
+      <div className="p-2 float-right">
+        <Botao desativado={!ativo}>Salvar</Botao>
       </div>
     </Card>
   );
